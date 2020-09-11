@@ -5,6 +5,7 @@ using Api.Domain.Entities;
 using Api.Domain.Interfaces.Services.User;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Api.Application.Controllers
 {
@@ -35,6 +36,7 @@ namespace Api.Application.Controllers
             }
         }
 
+        [Authorize(Roles = "Read")]
         [HttpGet]
         [Route("{id:guid}", Name = "GetById")]
         public async Task<ActionResult<UserEntity>> Get(Guid id)
@@ -55,7 +57,7 @@ namespace Api.Application.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<UserEntity>> Post([FromBody] UserEntity userEntity)
+        public async Task<ActionResult<UserEntity>> Post(UserEntity userEntity)
         {
             if (!ModelState.IsValid)
             {
@@ -77,7 +79,7 @@ namespace Api.Application.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<UserEntity>> Put([FromBody] UserEntity userEntity)
+        public async Task<ActionResult<UserEntity>> Put(UserEntity userEntity)
         {
             if (!ModelState.IsValid)
             {

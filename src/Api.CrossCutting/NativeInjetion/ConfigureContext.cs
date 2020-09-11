@@ -7,7 +7,7 @@ namespace Api.CrossCutting.NativeInjetion
 {
     public static class ConfigureContext
     {
-        public static void RegisterContext(this IServiceCollection serviceDescriptors, IConfiguration configuration){
+        public static void AddContext(this IServiceCollection serviceDescriptors, IConfiguration configuration){
             serviceDescriptors.AddDbContext<ApiContext>(op => op.UseMySql(configuration.GetConnectionString("DefaultConnection")));
         }
     }

@@ -4,9 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Api.CrossCutting.NativeInjetion
 {
-    public static class ConfiguraRepositories
+    public static class ConfigureRepositories
     {
-        public static void RegisterRepositories(this IServiceCollection serviceDescriptors)
+        public static void AddRepositories(this IServiceCollection serviceDescriptors)
         {
             serviceDescriptors.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             serviceDescriptors.AddScoped<IUserRepository, UserRepository>();
